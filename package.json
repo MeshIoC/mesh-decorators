@@ -48,6 +48,6 @@
         "typescript": "^5.4.2"
     },
     "dependencies": {
-        "mesh-ioc": "^3.3.0"
+        "mesh-ioc": "^3.3.1"
     }
 }
