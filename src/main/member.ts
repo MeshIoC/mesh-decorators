@@ -36,7 +36,7 @@ export function findMembers(decoratorName: string, mesh: Mesh, recursive = true)
     for (const [key, binding] of bindings) {
         if (binding.type === 'service') {
             for (const { target, memberName } of refs) {
-                if (target === binding.class || target.isPrototypeOf(binding.class)) {
+                if (target === binding.class || Object.prototype.isPrototypeOf.call(target, binding.class)) {
                     result.push({
                         target: mesh.resolve(key),
                         memberName,
