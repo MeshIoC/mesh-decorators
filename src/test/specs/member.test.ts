@@ -51,7 +51,7 @@ describe('member decorators', () => {
             assert.strictEqual(fooRefs[0].memberName, 'hi');
         });
 
-        it('returns inherited and implementation references when child is m', () => {
+        it('returns inherited and implementation references', () => {
             const mesh = new Mesh();
             mesh.service(SubServiceB);
             const fooRefs = findMembers('foo', mesh);
@@ -60,6 +60,15 @@ describe('member decorators', () => {
             assert.strictEqual(fooRefs[0].memberName, 'hi');
             assert.strictEqual(fooRefs[1].target.constructor.name, 'SubServiceB');
             assert.strictEqual(fooRefs[1].memberName, 'bye');
+        });
+
+        it('returns only base class references if child is not bound', () => {
+            const mesh = new Mesh();
+            mesh.service(ServiceB);
+            const fooRefs = findMembers('foo', mesh);
+            assert.strictEqual(fooRefs.length, 1);
+            assert.strictEqual(fooRefs[0].target.constructor.name, 'ServiceB');
+            assert.strictEqual(fooRefs[0].memberName, 'hi');
         });
 
         it('returns inherited and implementation references when child is bound to parent', () => {
