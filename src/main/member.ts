@@ -26,14 +26,18 @@ export function createMemberDecorator<M = void>(decoratorName: string) {
     };
 }
 
+export function getMemberRefs<M>(decoratorName: string): Array<MemberRef<M>> {
+    return globalMemberRefMap.get(decoratorName) || [];
+}
+
 /**
  * Obtains a list of member references decorated by specified `decoratorName`.
  *
  * For each reference, the `target` is the actual instance of the class created by specified `mesh`.
  */
-export function findMembers(decoratorName: string, mesh: Mesh, recursive = true): Array<MemberRef<any>> {
-    const result: Array<MemberRef<any>> = [];
-    const refs = globalMemberRefMap.get(decoratorName) || [];
+export function findMembers<T>(decoratorName: string, mesh: Mesh, recursive = true): Array<MemberRef<T>> {
+    const result: Array<MemberRef<T>> = [];
+    const refs = getMemberRefs<T>(decoratorName);
     const bindings = recursive ? mesh.allBindings() : mesh.bindings.entries();
     for (const [key, binding] of bindings) {
         if (binding.type === 'service') {
