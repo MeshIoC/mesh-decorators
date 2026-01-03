@@ -37,7 +37,8 @@
     "author": "Boris Okunskiy",
     "license": "ISC",
     "peerDependencies": {
-        "mesh-ioc": "^4.1.1"
+        "mesh-ioc": "^4.1.2",
+        "reflect-metadata": "^0.2.2"
     },
     "devDependencies": {
         "@fastify/pre-commit": "^2.2.1",
@@ -47,7 +48,6 @@
         "chalk": "^5.6.2",
         "eslint": "^9.39.2",
         "mocha": "^11.7.5",
-        "reflect-metadata": "^0.2.2",
         "typescript": "^5.9.3"
     }
 }
